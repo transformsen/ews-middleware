@@ -1,0 +1,113 @@
+{
+  "name": "Account",
+  "connector": "rest",
+  "baseURL": "http://localhost:3002",
+  "crud": false,
+  "options": {
+    "headers": {
+      "accept": "application/json",
+      "content-type": "application/json"
+    }
+  },
+  "operations": [
+    {
+      "template": {
+        "method": "GET",
+        "url": "http://localhost:3002/get-user-photo/{email}/{sizeRequested}"
+      },
+      "functions": {
+        "getUserPhoto": ["email", "sizeRequested"]
+      }
+    },
+    {
+      "template": {
+        "method": "GET",
+        "url": "http://localhost:3002/getclientaccesstoken/{id}"
+      },
+      "functions": {
+        "getClientAccessToken": ["id"]
+      }
+    },
+    {
+      "template": {
+        "method": "GET",
+        "url": "http://localhost:3002/getuseravailability/{timeZone}"
+      },
+      "functions": {
+        "getUserAvailability": ["timeZone"]
+      }
+    },
+    {
+      "template": {
+        "method": "GET",
+        "url": "http://localhost:3002/getUserOofSettings/{email}"
+      },
+      "functions": {
+        "getUserOofSettings": ["email"]
+      }
+    },
+    {
+      "template": {
+        "method": "GET",
+        "url": "http://localhost:3002/getPersona/{personaId}"
+      },
+      "functions": {
+        "getPersona": ["personaId"]
+      }
+    },
+    {
+      "template": {
+        "method": "GET",
+        "url": "http://localhost:3002/getInboxRules/{address}"
+      },
+      "functions": {
+        "getInboxRules": ["address"]
+      }
+    },
+    {
+      "template": {
+        "method": "GET",
+        "url": "http://localhost:3002/findPeople/{folderId}"
+      },
+      "functions": {
+        "findPeople": ["folderId"]
+      }
+    },
+    {
+      "template": {
+        "method": "POST",
+        "url": "http://localhost:3002/setUserOofSettings"
+      },
+      "functions": {
+        "setUserOofSettings": [],
+        "body": {
+          "mailbox": "{mailbox:string}"
+        }
+      }
+    },
+    {
+      "template": {
+        "method": "POST",
+        "url": "http://localhost:3002/updateInboxRules"
+      },
+      "functions": {
+        "updateInboxRules": [],
+        "body": {
+          "remove": "{remove:string}"
+        }
+      }
+    },
+    {
+      "template": {
+        "method": "POST",
+        "url": "http://localhost:3002/setUserPhoto"
+      },
+      "functions": {
+        "setUserPhoto": [],
+        "body": {
+          "image": "{image:string}"
+        }
+      }
+    }
+  ]
+}

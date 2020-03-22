@@ -1,0 +1,314 @@
+<!--https://outlook.office365.com/EWS/Services.wsdl-->
+<!--Other services can be inclueded from above wsdl based on demand-->
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+    xmlns:tns="http://schemas.microsoft.com/exchange/services/2006/messages" 
+    xmlns:s="http://www.w3.org/2001/XMLSchema" 
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+    xmlns:t="http://schemas.microsoft.com/exchange/services/2006/types" targetNamespace="http://schemas.microsoft.com/exchange/services/2006/messages">
+    <!--Types-->
+    <wsdl:types>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:import namespace="http://schemas.microsoft.com/exchange/services/2006/messages" schemaLocation="messages.xsd"/>
+        </xs:schema>
+    </wsdl:types>
+    <!--Messages-->
+    <!--  Photos  -->
+    <wsdl:message name="GetUserPhotoSoapIn">
+        <wsdl:part name="request" element="tns:GetUserPhoto"/>
+        <wsdl:part name="RequestVersion" element="t:RequestServerVersion"/>
+    </wsdl:message>
+    <wsdl:message name="GetUserPhotoSoapOut">
+        <wsdl:part name="GetUserPhotoResult" element="tns:GetUserPhotoResponse"/>
+        <wsdl:part name="ServerVersion" element="t:ServerVersionInfo"/>
+    </wsdl:message>
+    <wsdl:message name="SetUserPhotoSoapIn">
+        <wsdl:part name="request" element="tns:SetUserPhoto"/>
+        <wsdl:part name="RequestVersion" element="t:RequestServerVersion"/>
+    </wsdl:message>
+    <wsdl:message name="SetUserPhotoSoapOut">
+        <wsdl:part name="SetUserPhotoResult" element="tns:SetUserPhotoResponse"/>
+        <wsdl:part name="ServerVersion" element="t:ServerVersionInfo"/>
+    </wsdl:message>
+    <!--Token-->
+    <wsdl:message name="GetClientAccessTokenSoapIn">
+        <wsdl:part name="request" element="tns:GetClientAccessToken"/>
+        <wsdl:part name="RequestVersion" element="t:RequestServerVersion"/>
+    </wsdl:message>
+    <wsdl:message name="GetClientAccessTokenSoapOut">
+        <wsdl:part name="GetClientAccessTokenResult" element="tns:GetClientAccessTokenResponse"/>
+        <wsdl:part name="ServerVersion" element="t:ServerVersionInfo"/>
+    </wsdl:message>
+    <!--  Availability Service messages  -->
+    <wsdl:message name="GetUserAvailabilitySoapIn">
+        <wsdl:part name="GetUserAvailabilityRequest" element="tns:GetUserAvailabilityRequest"/>
+        <wsdl:part name="Impersonation" element="t:ExchangeImpersonation"/>
+        <wsdl:part name="TimeZoneContext" element="t:TimeZoneContext"/>
+        <wsdl:part name="RequestVersion" element="t:RequestServerVersion"/>
+    </wsdl:message>
+    <wsdl:message name="GetUserAvailabilitySoapOut">
+        <wsdl:part name="GetUserAvailabilityResult" element="tns:GetUserAvailabilityResponse"/>
+        <wsdl:part name="ServerVersion" element="t:ServerVersionInfo"/>
+    </wsdl:message>
+    <wsdl:message name="GetUserOofSettingsSoapIn">
+        <wsdl:part name="GetUserOofSettingsRequest" element="tns:GetUserOofSettingsRequest"/>
+        <wsdl:part name="Impersonation" element="t:ExchangeImpersonation"/>
+        <wsdl:part name="RequestVersion" element="t:RequestServerVersion"/>
+    </wsdl:message>
+    <wsdl:message name="GetUserOofSettingsSoapOut">
+        <wsdl:part name="GetUserOofSettingsResult" element="tns:GetUserOofSettingsResponse"/>
+        <wsdl:part name="ServerVersion" element="t:ServerVersionInfo"/>
+    </wsdl:message>
+    <wsdl:message name="SetUserOofSettingsSoapIn">
+        <wsdl:part name="SetUserOofSettingsRequest" element="tns:SetUserOofSettingsRequest"/>
+        <wsdl:part name="Impersonation" element="t:ExchangeImpersonation"/>
+        <wsdl:part name="RequestVersion" element="t:RequestServerVersion"/>
+    </wsdl:message>
+    <wsdl:message name="SetUserOofSettingsSoapOut">
+        <wsdl:part name="SetUserOofSettingsResult" element="tns:SetUserOofSettingsResponse"/>
+        <wsdl:part name="ServerVersion" element="t:ServerVersionInfo"/>
+    </wsdl:message>
+    <!--  FindPeople Messages -->
+    <wsdl:message name="FindPeopleSoapIn">
+        <wsdl:part name="request" element="tns:FindPeople"/>
+        <wsdl:part name="Impersonation" element="t:ExchangeImpersonation"/>
+        <wsdl:part name="RequestVersion" element="t:RequestServerVersion"/>
+    </wsdl:message>
+    <wsdl:message name="FindPeopleSoapOut">
+        <wsdl:part name="FindPeopleResult" element="tns:FindPeopleResponse"/>
+        <wsdl:part name="ServerVersion" element="t:ServerVersionInfo"/>
+    </wsdl:message>
+    <!--  GetPersona Messages -->
+    <wsdl:message name="GetPersonaSoapIn">
+        <wsdl:part name="request" element="tns:GetPersona"/>
+        <wsdl:part name="Impersonation" element="t:ExchangeImpersonation"/>
+        <wsdl:part name="RequestVersion" element="t:RequestServerVersion"/>
+    </wsdl:message>
+    <wsdl:message name="GetPersonaSoapOut">
+        <wsdl:part name="GetPersonaResult" element="tns:GetPersonaResponseMessage"/>
+        <wsdl:part name="ServerVersion" element="t:ServerVersionInfo"/>
+    </wsdl:message>
+    <wsdl:message name="GetInboxRulesSoapIn">
+        <wsdl:part name="request" element="tns:GetInboxRules"/>
+        <wsdl:part name="Impersonation" element="t:ExchangeImpersonation"/>
+        <wsdl:part name="MailboxCulture" element="t:MailboxCulture"/>
+        <wsdl:part name="RequestVersion" element="t:RequestServerVersion"/>
+        <wsdl:part name="TimeZoneContext" element="t:TimeZoneContext"/>
+    </wsdl:message>
+    <wsdl:message name="GetInboxRulesSoapOut">
+        <wsdl:part name="GetInboxRulesResult" element="tns:GetInboxRulesResponse"/>
+        <wsdl:part name="ServerVersion" element="t:ServerVersionInfo"/>
+    </wsdl:message>
+    <wsdl:message name="UpdateInboxRulesSoapIn">
+        <wsdl:part name="request" element="tns:UpdateInboxRules"/>
+        <wsdl:part name="Impersonation" element="t:ExchangeImpersonation"/>
+        <wsdl:part name="MailboxCulture" element="t:MailboxCulture"/>
+        <wsdl:part name="RequestVersion" element="t:RequestServerVersion"/>
+        <wsdl:part name="TimeZoneContext" element="t:TimeZoneContext"/>
+    </wsdl:message>
+    <wsdl:message name="UpdateInboxRulesSoapOut">
+        <wsdl:part name="UpdateInboxRulesResult" element="tns:UpdateInboxRulesResponse"/>
+        <wsdl:part name="ServerVersion" element="t:ServerVersionInfo"/>
+    </wsdl:message>
+    <!--Port-->
+    <wsdl:portType name="AccountServicePortType">
+        <!--Operation-->
+        <!--  Photos  -->
+        <wsdl:operation name="GetUserPhoto">
+            <wsdl:input message="tns:GetUserPhotoSoapIn"/>
+            <wsdl:output message="tns:GetUserPhotoSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="SetUserPhoto">
+            <wsdl:input message="tns:SetUserPhotoSoapIn"/>
+            <wsdl:output message="tns:SetUserPhotoSoapOut"/>
+        </wsdl:operation>
+        <!--Token-->
+        <wsdl:operation name="GetClientAccessToken">
+            <wsdl:input message="tns:GetClientAccessTokenSoapIn"/>
+            <wsdl:output message="tns:GetClientAccessTokenSoapOut"/>
+        </wsdl:operation>
+        <!--  Availability Service Operations  -->
+        <!--  GetUserAvailability  -->
+        <wsdl:operation name="GetUserAvailability">
+            <wsdl:input message="tns:GetUserAvailabilitySoapIn"/>
+            <wsdl:output message="tns:GetUserAvailabilitySoapOut"/>
+        </wsdl:operation>
+        <!--  GetUserOofSettings  -->
+        <wsdl:operation name="GetUserOofSettings">
+            <wsdl:input message="tns:GetUserOofSettingsSoapIn"/>
+            <wsdl:output message="tns:GetUserOofSettingsSoapOut"/>
+        </wsdl:operation>
+        <!--  SetUserOofSettings  -->
+        <wsdl:operation name="SetUserOofSettings">
+            <wsdl:input message="tns:SetUserOofSettingsSoapIn"/>
+            <wsdl:output message="tns:SetUserOofSettingsSoapOut"/>
+        </wsdl:operation>
+
+        <!-- FindPeople -->
+        <wsdl:operation name="FindPeople">
+            <wsdl:input message="tns:FindPeopleSoapIn"/>
+            <wsdl:output message="tns:FindPeopleSoapOut"/>
+        </wsdl:operation>
+        <!-- GetPersona -->
+        <wsdl:operation name="GetPersona">
+            <wsdl:input message="tns:GetPersonaSoapIn"/>
+            <wsdl:output message="tns:GetPersonaSoapOut"/>
+        </wsdl:operation>
+        <!--  Inbox Rules  -->
+        <wsdl:operation name="GetInboxRules">
+            <wsdl:input message="tns:GetInboxRulesSoapIn"/>
+            <wsdl:output message="tns:GetInboxRulesSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="UpdateInboxRules">
+            <wsdl:input message="tns:UpdateInboxRulesSoapIn"/>
+            <wsdl:output message="tns:UpdateInboxRulesSoapOut"/>
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <wsdl:binding name="AccountServiceBinding" type="tns:AccountServicePortType">
+        <!--Documentation-->
+        <wsdl:documentation>
+            <wsi:Claim xmlns:wsi="http://ws-i.org/schemas/conformanceClaim/" conformsTo="http://ws-i.org/profiles/basic/1.0"/>
+        </wsdl:documentation>
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <!--Operations-->
+        <!--  Photos  -->
+        <wsdl:operation name="GetUserPhoto">
+            <soap:operation soapAction="http://schemas.microsoft.com/exchange/services/2006/messages/GetUserPhoto"/>
+            <wsdl:input>
+                <soap:header message="tns:GetUserPhotoSoapIn" part="RequestVersion" use="literal"/>
+                <soap:body parts="request" use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body parts="GetUserPhotoResult" use="literal"/>
+                <soap:header message="tns:GetUserPhotoSoapOut" part="ServerVersion" use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="SetUserPhoto">
+            <soap:operation soapAction="http://schemas.microsoft.com/exchange/services/2006/messages/SetUserPhoto"/>
+            <wsdl:input>
+                <soap:header message="tns:SetUserPhotoSoapIn" part="RequestVersion" use="literal"/>
+                <soap:body parts="request" use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body parts="SetUserPhotoResult" use="literal"/>
+                <soap:header message="tns:SetUserPhotoSoapOut" part="ServerVersion" use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <!--Token-->
+        <wsdl:operation name="GetClientAccessToken">
+            <soap:operation soapAction="http://schemas.microsoft.com/exchange/services/2006/messages/GetClientAccessToken"/>
+            <wsdl:input>
+                <soap:header message="tns:GetClientAccessTokenSoapIn" part="RequestVersion" use="literal"/>
+                <soap:body parts="request" use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body parts="GetClientAccessTokenResult" use="literal"/>
+                <soap:header message="tns:GetClientAccessTokenSoapOut" part="ServerVersion" use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+
+        <!--  Availability Service  -->
+        <!--  GetUserAvailability  -->
+        <wsdl:operation name="GetUserAvailability">
+            <soap:operation soapAction="http://schemas.microsoft.com/exchange/services/2006/messages/GetUserAvailability"/>
+            <wsdl:input>
+                <soap:header message="tns:GetUserAvailabilitySoapIn" part="Impersonation" use="literal"/>
+                <soap:header message="tns:GetUserAvailabilitySoapIn" part="TimeZoneContext" use="literal"/>
+                <soap:header message="tns:GetUserAvailabilitySoapIn" part="RequestVersion" use="literal"/>
+                <soap:body parts="GetUserAvailabilityRequest" use="literal"/>
+                <soap:header message="tns:GetUserAvailabilitySoapIn" part="RequestVersion" use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body parts="GetUserAvailabilityResult" use="literal"/>
+                <soap:header message="tns:GetUserAvailabilitySoapOut" part="ServerVersion" use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetUserOofSettings">
+            <soap:operation soapAction="http://schemas.microsoft.com/exchange/services/2006/messages/GetUserOofSettings"/>
+            <wsdl:input>
+                <soap:header message="tns:GetUserOofSettingsSoapIn" part="Impersonation" use="literal"/>
+                <soap:body parts="GetUserOofSettingsRequest" use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body parts="GetUserOofSettingsResult" use="literal"/>
+                <soap:header message="tns:GetUserOofSettingsSoapOut" part="ServerVersion" use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <!--  SetUserOofSettings  -->
+        <wsdl:operation name="SetUserOofSettings">
+            <soap:operation soapAction="http://schemas.microsoft.com/exchange/services/2006/messages/SetUserOofSettings"/>
+            <wsdl:input>
+                <soap:header message="tns:SetUserOofSettingsSoapIn" part="Impersonation" use="literal"/>
+                <soap:body parts="SetUserOofSettingsRequest" use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body parts="SetUserOofSettingsResult" use="literal"/>
+                <soap:header message="tns:SetUserOofSettingsSoapOut" part="ServerVersion" use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <!--People service-->
+
+        <!-- FindPeople -->
+        <wsdl:operation name="FindPeople">
+            <soap:operation soapAction="http://schemas.microsoft.com/exchange/services/2006/messages/FindPeople"/>
+            <wsdl:input>
+                <soap:body parts="request" use="literal"/>
+                <soap:header message="tns:FindPeopleSoapIn" part="RequestVersion" use="literal"/>
+                <soap:header message="tns:FindPeopleSoapIn" part="Impersonation" use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body parts="FindPeopleResult" use="literal"/>
+                <soap:header message="tns:FindPeopleSoapOut" part="ServerVersion" use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <!-- GetPersona -->
+        <wsdl:operation name="GetPersona">
+            <soap:operation soapAction="http://schemas.microsoft.com/exchange/services/2006/messages/GetPersona"/>
+            <wsdl:input>
+                <soap:body parts="request" use="literal"/>
+                <soap:header message="tns:GetPersonaSoapIn" part="RequestVersion" use="literal"/>
+                <soap:header message="tns:GetPersonaSoapIn" part="Impersonation" use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body parts="GetPersonaResult" use="literal"/>
+                <soap:header message="tns:GetPersonaSoapOut" part="ServerVersion" use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <!--  Inbox Rules Operations  -->
+        <!--  GetInboxRules  -->
+        <wsdl:operation name="GetInboxRules">
+            <soap:operation soapAction="http://schemas.microsoft.com/exchange/services/2006/messages/GetInboxRules"/>
+            <wsdl:input>
+                <soap:header message="tns:GetInboxRulesSoapIn" part="Impersonation" use="literal"/>
+                <soap:header message="tns:GetInboxRulesSoapIn" part="MailboxCulture" use="literal"/>
+                <soap:header message="tns:GetInboxRulesSoapIn" part="RequestVersion" use="literal"/>
+                <soap:header message="tns:GetInboxRulesSoapIn" part="TimeZoneContext" use="literal"/>
+                <soap:body parts="request" use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body parts="GetInboxRulesResult" use="literal"/>
+                <soap:header message="tns:GetInboxRulesSoapOut" part="ServerVersion" use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <!--  UpdateInboxRules  -->
+        <wsdl:operation name="UpdateInboxRules">
+            <soap:operation soapAction="http://schemas.microsoft.com/exchange/services/2006/messages/UpdateInboxRules"/>
+            <wsdl:input>
+                <soap:header message="tns:UpdateInboxRulesSoapIn" part="Impersonation" use="literal"/>
+                <soap:header message="tns:UpdateInboxRulesSoapIn" part="MailboxCulture" use="literal"/>
+                <soap:header message="tns:UpdateInboxRulesSoapIn" part="RequestVersion" use="literal"/>
+                <soap:header message="tns:UpdateInboxRulesSoapIn" part="TimeZoneContext" use="literal"/>
+                <soap:body parts="request" use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body parts="UpdateInboxRulesResult" use="literal"/>
+                <soap:header message="tns:UpdateInboxRulesSoapOut" part="ServerVersion" use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="AccountService">
+        <wsdl:port name="AccountInfoPort" binding="tns:AccountServiceBinding">
+            <soap:address location="http://localhost:15099/doc_literal_test"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
