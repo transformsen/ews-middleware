@@ -33,5 +33,5 @@
 | Data source | Third part APIs are called via loopback provided datasource |
 
 ### Verification
-- npm start
+- Start the thripart service, then start the ews-middleware.(follow installation step)
 - ews-middleware/doc - folder contains the postman collection for verifying all 10 services implemented as part of this challenge.
