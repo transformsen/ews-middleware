@@ -1,7 +1,5 @@
 
 import * as Types from "./types";
-import { Type } from "@loopback/repository";
-
 
 export interface ResponseMessageType {
     MessageText?: string;

@@ -5,7 +5,7 @@ import { ServiceMixin } from '@loopback/service-proxy';
 import { ApplicationConfig, Application } from '@loopback/core';
 import { SOAPServer } from './servers/soap-server';
 import { SOAP_SERVER_PORT } from './constants';
-import {RestServer, RestComponent} from '@loopback/rest';
+import { RestComponent} from '@loopback/rest';
 
 /**
  * EwsApplication

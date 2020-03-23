@@ -28,76 +28,70 @@ export function soapRouter(server: SOAPServer) {
 export function handler(soapServer: SOAPServer):
     (options: Options, req: any, callback: any) => Promise<any> {
     let controller: Controller;
-    try {
-        return async function (options: Options, req: any, callback: any) {
-            options = options || {};
-            const server = soapServer.server;
-            const { serviceName, portName, operationName, args,
-                includeTimestamp } = options;
-            let handled: boolean = false;
-            let operation;
-            //Port name is the controller
-            controller = await soapServer.get<Controller>(`controllers.${serviceName}Controller`);
+    return async function (options: Options, req: any, callback: any) {
+        options = options || {};
+        const server = soapServer.server;
+        const { serviceName, portName, operationName, args,
+            includeTimestamp } = options;
+        let handled = false;
+        let operationFun;
+        //Port name is the controller
+        controller = await soapServer.get<Controller>(`controllers.${serviceName}Controller`);
 
-            try {                
-                //operationName is the method name
-                const port: any = controller[portName];
-                operation  = port[operationName]
-            } catch (error) {
-                console.error('Server executeMethod: error: %s ', error.message);
-                return callback(this._envelope('', includeTimestamp));
-            }
-
-            function handleResult(error: any, result: any) {
-                if (handled) {
-                    return;
-                }
-                handled = true;
-                //operation from wsdl
-                const operation = server.wsdl.definitions.services[serviceName]
-                    .ports[portName].binding.operations[operationName];
-
-                if (error && error.Fault !== undefined) {
-                    return server._sendError(operation, error, callback, includeTimestamp);
-                }
-                else if (result === undefined) {
-                    result = error;
-                }
-
-                const operationDescriptor = operation.describe(server.wsdl.definitions);
-                const outputBodyDescriptor = operationDescriptor.output.body;
-
-                let soapNsURI = 'http://schemas.xmlsoap.org/soap/envelope/';
-                const soapNsPrefix = server.wsdl.options.envelopeKey || 'soap';
-
-                if (operation.soapVersion === SOAP_VERSION_2) {
-                    soapNsURI = 'http://www.w3.org/2003/05/soap-envelope';
-                }
-
-                const nsContext = server.createNamespaceContext(soapNsPrefix, soapNsURI);
-                const envelope = XMLHandler.createSOAPEnvelope(soapNsPrefix, soapNsURI);
-                server.xmlHandler.jsonToXml(envelope.body, nsContext, outputBodyDescriptor, result);
-
-                server._envelope(envelope, includeTimestamp);
-                const message = envelope.body.toString({ pretty: true });
-                const xml = envelope.doc.end({ pretty: true });
-                callback(xml);
-            }
-
-            if (!server.wsdl.definitions.services[serviceName].ports[portName]
-                .binding.operations[operationName].output) {
-                // no output defined = one-way operation so return empty response
-                handled = true;
-                callback('');
-            }
-
-            var result = await operation(args, handleResult, options.headers, req);
-            if (typeof result !== 'undefined') {
-                handleResult(null, result);
-            }
+        try {
+            //operationName is the method name
+            const port: any = controller[portName];
+            operationFun = port[operationName]
+        } catch (error) {
+            console.error('Server executeMethod: error: %s ', error.message);
+            return callback(this._envelope('', includeTimestamp));
         }
-    } catch (err) {
-        console.error('soap route error', err)
-        throw err;
+
+        function handleResult(error: any, result: any) {
+            if (handled) {
+                return;
+            }
+            handled = true;
+            //operation from wsdl
+            const operation = server.wsdl.definitions.services[serviceName]
+                .ports[portName].binding.operations[operationName];
+
+            if (error?.Fault !== undefined) {
+                return server._sendError(operation, error, callback, includeTimestamp);
+            }
+            else if (result === undefined) {
+                result = error;
+            }
+
+            const operationDescriptor = operation.describe(server.wsdl.definitions);
+            const outputBodyDescriptor = operationDescriptor.output.body;
+
+            let soapNsURI = 'http://schemas.xmlsoap.org/soap/envelope/';
+            const soapNsPrefix = server.wsdl.options.envelopeKey || 'soap';
+
+            if (operation.soapVersion === SOAP_VERSION_2) {
+                soapNsURI = 'http://www.w3.org/2003/05/soap-envelope';
+            }
+
+            const nsContext = server.createNamespaceContext(soapNsPrefix, soapNsURI);
+            const envelope = XMLHandler.createSOAPEnvelope(soapNsPrefix, soapNsURI);
+            server.xmlHandler.jsonToXml(envelope.body, nsContext, outputBodyDescriptor, result);
+
+            server._envelope(envelope, includeTimestamp);
+            const xml = envelope.doc.end({ pretty: true });
+            callback(xml);
+        }
+
+        if (!server.wsdl.definitions.services[serviceName].ports[portName]
+            .binding.operations[operationName].output) {
+            // no output defined = one-way operation so return empty response
+            handled = true;
+            callback('');
+        }
+
+        const result = await operationFun(args, handleResult, options.headers, req);
+        if (typeof result !== 'undefined') {
+            handleResult(null, result);
+        }
     }
 } 

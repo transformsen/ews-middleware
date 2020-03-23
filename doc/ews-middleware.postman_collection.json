@@ -1,0 +1,300 @@
+{
+	"info": {
+		"_postman_id": "19e04a40-e5ef-424b-b2a8-a4e41969dc16",
+		"name": "ews-middleware",
+		"description": "This EWS middleware contains account related services",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "getpersona",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"\r\n               xmlns:t=\"https://schemas.microsoft.com/exchange/services/2006/types\">\r\n   <soap:Header>\r\n      <t:RequestServerVersion Version=\"Exchange2013\"/>\r\n   </soap:Header>\r\n   <soap:Body xmlns=\"https://schemas.microsoft.com/exchange/services/2006/messages\">\r\n      <GetPersona>\r\n         <PersonaId Id=\"AAQkADEzAQAKtOtR\"/>\r\n      </GetPersona>\r\n   </soap:Body>\r\n</soap:Envelope>"
+				},
+				"url": {
+					"raw": "http://localhost:3001/ews-service?wsdl",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"ews-service"
+					],
+					"query": [
+						{
+							"key": "wsdl",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getuserphoto",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"utf-8\" ?>\r\n<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r\n               xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"\r\n               xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"\r\n               xmlns:t=\"https://schemas.microsoft.com/exchange/services/2006/types\"\r\n               xmlns:m=\"https://schemas.microsoft.com/exchange/services/2006/messages\">\r\n   <soap:Header>\r\n      <t:RequestServerVersion Version=\"Exchange2013\"/>\r\n   </soap:Header>\r\n   <soap:Body>\r\n      <m:GetUserPhoto>\r\n         <m:Email>user1@contoso.com</m:Email>\r\n         <m:SizeRequested>HR48x48</m:SizeRequested>\r\n      </m:GetUserPhoto>\r\n   </soap:Body>\r\n</soap:Envelope>"
+				},
+				"url": {
+					"raw": "http://localhost:3001/ews-service?wsdl",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"ews-service"
+					],
+					"query": [
+						{
+							"key": "wsdl",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getclientaccesstoken",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"\r\n               xmlns:t=\"https://schemas.microsoft.com/exchange/services/2006/types\"\r\n               xmlns:m=\"https://schemas.microsoft.com/exchange/services/2006/messages\">\r\n   <soap:Header>\r\n      <t:RequestServerVersion Version=\"Exchange2013\" />\r\n   </soap:Header>\r\n   <soap:Body >\r\n      <m:GetClientAccessToken>\r\n         <m:TokenRequests>\r\n            <t:TokenRequest>\r\n               <t:Id>1C50226D-04B5-4AB2-9FCD-42E236B59E4B</t:Id>\r\n               <t:TokenType>CallerIdentity</t:TokenType>\r\n            </t:TokenRequest>\r\n         </m:TokenRequests>\r\n      </m:GetClientAccessToken>\r\n   </soap:Body>\r\n</soap:Envelope>"
+				},
+				"url": {
+					"raw": "http://localhost:3001/ews-service?wsdl",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"ews-service"
+					],
+					"query": [
+						{
+							"key": "wsdl",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getuseravailability",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r\n               xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"\r\n               xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"\r\n               xmlns:t=\"https://schemas.microsoft.com/exchange/services/2006/types\">\r\n  <soap:Body>\r\n    <GetUserAvailabilityRequest xmlns=\"https://schemas.microsoft.com/exchange/services/2006/messages\"\r\n                xmlns:t=\"https://schemas.microsoft.com/exchange/services/2006/types\">\r\n      <t:TimeZone xmlns=\"https://schemas.microsoft.com/exchange/services/2006/types\">\r\n        <Bias>480</Bias>\r\n        <StandardTime>\r\n          <Bias>0</Bias>\r\n          <Time>02:00:00</Time>\r\n          <DayOrder>5</DayOrder>\r\n          <Month>10</Month>\r\n          <DayOfWeek>Sunday</DayOfWeek>\r\n        </StandardTime>\r\n        <DaylightTime>\r\n          <Bias>-60</Bias>\r\n          <Time>02:00:00</Time>\r\n          <DayOrder>1</DayOrder>\r\n          <Month>4</Month>\r\n          <DayOfWeek>Sunday</DayOfWeek>\r\n        </DaylightTime>\r\n      </t:TimeZone>\r\n      <MailboxDataArray>\r\n        <t:MailboxData>\r\n          <t:Email>\r\n            <t:Address>user1@example.com</t:Address>\r\n          </t:Email>\r\n          <t:AttendeeType>Required</t:AttendeeType>\r\n          <t:ExcludeConflicts>false</t:ExcludeConflicts>\r\n        </t:MailboxData>\r\n        <t:MailboxData>\r\n          <t:Email>\r\n            <t:Address>user2@example.com</t:Address>\r\n          </t:Email>\r\n          <t:AttendeeType>Required</t:AttendeeType>\r\n          <t:ExcludeConflicts>false</t:ExcludeConflicts>\r\n        </t:MailboxData>\r\n      </MailboxDataArray>\r\n      <t:FreeBusyViewOptions>\r\n        <t:TimeWindow>\r\n          <t:StartTime>2006-10-16T00:00:00</t:StartTime>\r\n          <t:EndTime>2006-10-16T23:59:59</t:EndTime>\r\n        </t:TimeWindow>\r\n        <t:MergedFreeBusyIntervalInMinutes>60</t:MergedFreeBusyIntervalInMinutes>\r\n        <t:RequestedView>DetailedMerged</t:RequestedView>\r\n      </t:FreeBusyViewOptions>\r\n    </GetUserAvailabilityRequest>\r\n  </soap:Body>\r\n</soap:Envelope>"
+				},
+				"url": {
+					"raw": "http://localhost:3001/ews-service?wsdl",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"ews-service"
+					],
+					"query": [
+						{
+							"key": "wsdl",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getuseroofsettings",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" \r\n               xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" \r\n               xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\r\n  <soap:Body>\r\n    <GetUserOofSettingsRequest xmlns=\"https://schemas.microsoft.com/exchange/services/2006/messages\">\r\n      <Mailbox xmlns =\"https://schemas.microsoft.com/exchange/services/2006/types\">\r\n        <Address>User1@example.com</Address>\r\n      </Mailbox>\r\n    </GetUserOofSettingsRequest>\r\n  </soap:Body>\r\n</soap:Envelope>"
+				},
+				"url": {
+					"raw": "http://localhost:3001/ews-service?wsdl",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"ews-service"
+					],
+					"query": [
+						{
+							"key": "wsdl",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "setuseroofsettings",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\r\n  <soap:Body>\r\n    <SetUserOofSettingsRequest xmlns=\"https://schemas.microsoft.com/exchange/services/2006/messages\">\r\n      <Mailbox xmlns=\"https://schemas.microsoft.com/exchange/services/2006/types\">\r\n        <Name>User1</Name>\r\n        <Address>user1@example.com</Address>\r\n        <RoutingType>SMTP</RoutingType>\r\n      </Mailbox>\r\n      <UserOofSettings xmlns=\"https://schemas.microsoft.com/exchange/services/2006/types\">\r\n        <OofState>Enabled</OofState>\r\n        <ExternalAudience>All</ExternalAudience>\r\n        <Duration>\r\n          <StartTime>2006-10-05T00:00:00</StartTime>\r\n          <EndTime>2006-10-25T00:00:00</EndTime>\r\n        </Duration>\r\n        <InternalReply>\r\n          <Message>I am out of office.  This is my internal reply.</Message>\r\n        </InternalReply>\r\n        <ExternalReply>\r\n          <Message>I am out of office. This is my external reply.</Message>\r\n        </ExternalReply>\r\n      </UserOofSettings>\r\n    </SetUserOofSettingsRequest>\r\n  </soap:Body>\r\n</soap:Envelope>"
+				},
+				"url": {
+					"raw": "http://localhost:3001/ews-service?wsdl",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"ews-service"
+					],
+					"query": [
+						{
+							"key": "wsdl",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "findpeople",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"\r\n               xmlns:t=\"https://schemas.microsoft.com/exchange/services/2006/types\"\r\n               xmlns:m=\"https://schemas.microsoft.com/exchange/services/2006/messages\">\r\n   <soap:Header>\r\n      <t:RequestServerVersion Version=\"Exchange2013\" />\r\n   </soap:Header>\r\n   <soap:Body >\r\n      <m:FindPeople>\r\n         <m:IndexedPageItemView BasePoint=\"Beginning\" MaxEntriesReturned=\"100\" Offset=\"0\"/>\r\n         <m:ParentFolderId>\r\n            <t:DistinguishedFolderId Id=\"contacts\"/>\r\n         </m:ParentFolderId>\r\n      </m:FindPeople>\r\n   </soap:Body>\r\n</soap:Envelope>"
+				},
+				"url": {
+					"raw": "http://localhost:3001/ews-service?wsdl",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"ews-service"
+					],
+					"query": [
+						{
+							"key": "wsdl",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getinboxrules",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r\n        xmlns:m=\"https://schemas.microsoft.com/exchange/services/2006/messages\"\r\n        xmlns:t=\"https://schemas.microsoft.com/exchange/services/2006/types\"\r\n        xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\r\n  <soap:Header>\r\n    <t:RequestServerVersion Version=\"Exchange2010_SP1\" />\r\n  </soap:Header>\r\n  <soap:Body>\r\n    <m:GetInboxRules>\r\n      <m:MailboxSmtpAddress>User1@Contoso.com</m:MailboxSmtpAddress>\r\n    </m:GetInboxRules>\r\n  </soap:Body>\r\n</soap:Envelope>"
+				},
+				"url": {
+					"raw": "http://localhost:3001/ews-service?wsdl",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"ews-service"
+					],
+					"query": [
+						{
+							"key": "wsdl",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateinboxrules",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<soap:Envelope xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"\r\n               xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"\r\n               xmlns:t=\"https://schemas.microsoft.com/exchange/services/2006/types\"\r\n               xmlns:m=\"https://schemas.microsoft.com/exchange/services/2006/messages\">\r\n  <soap:Header>\r\n    <t:RequestServerVersion Version =\"Exchange2010_SP1\"/>\r\n  </soap:Header>\r\n  <soap:Body>\r\n      <m:UpdateInboxRules>\r\n        <m:RemoveOutlookRuleBlob>true</m:RemoveOutlookRuleBlob>\r\n        <m:Operations>\r\n          <t:CreateRuleOperation>\r\n            <t:Rule>\r\n              <t:DisplayName>MoveInterestingToJunk</t:DisplayName>\r\n              <t:Priority>1</t:Priority>\r\n              <t:IsEnabled>true</t:IsEnabled>\r\n              <t:Conditions>\r\n                <t:ContainsSubjectStrings>\r\n                  <t:String>Interesting</t:String>\r\n                </t:ContainsSubjectStrings>\r\n              </t:Conditions>\r\n              <t:Exceptions />\r\n              <t:Actions>\r\n                <t:MoveToFolder>\r\n                  <t:DistinguishedFolderId Id=\"junkemail\" />\r\n                </t:MoveToFolder>\r\n              </t:Actions>\r\n            </t:Rule>\r\n          </t:CreateRuleOperation>\r\n        </m:Operations>\r\n      </m:UpdateInboxRules>\r\n  </soap:Body>\r\n</soap:Envelope>"
+				},
+				"url": {
+					"raw": "http://localhost:3001/ews-service?wsdl",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"ews-service"
+					],
+					"query": [
+						{
+							"key": "wsdl",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "setuserphoto",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"image\": \"ewTTGSdn937cldfnau223\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/photo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"photo"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

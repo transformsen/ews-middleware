@@ -1,11 +1,10 @@
 import { Context, inject } from '@loopback/context';
 import { Application, CoreBindings, Server } from '@loopback/core';
-import express from 'express';
 import http from 'http';
 import pEvent from 'p-event';
 import * as fs from 'fs'; 
 import { soapRouter } from '../routes/soap-route';
-import { WSDL_LOCATION, BASE_URL, SOAP_SERVER_PORT, WDSL_ENCODING } from '../constants';
+import { WSDL_LOCATION, BASE_URL, WDSL_ENCODING } from '../constants';
 import { SoapServerConfig } from '../models/soap-server-config';
 const soap = require('strong-soap').soap;
 
@@ -14,7 +13,7 @@ const soap = require('strong-soap').soap;
  * Exend and 
  */
 export class SOAPServer extends Context implements Server {
-    private _listening: boolean = false;
+    private _listening = false;
     private httpServer: http.Server;
     public server: any;
 
